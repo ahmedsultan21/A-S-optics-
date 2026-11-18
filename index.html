@@ -66,5 +66,33 @@
     </section>
   </main>
   <footer>A&amp;S Optics © 2026</footer>
+  <!-- Supabase connection -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL = "https://qoalzgicjnsqfrrsrcbf.supabase.co";
+
+  const SUPABASE_KEY = "sb_publishable_5gqiMH6Dur7D0YwF5Cddiw_-qypzf_J";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  async function loadProducts() {
+    const { data: products, error } = await supabaseClient
+      .from("products")
+      .select("*");
+
+    if (error) {
+      console.error("Products loading error:", error.message);
+      return;
+    }
+
+    console.log("A&S Optics products:", products);
+  }
+
+  loadProducts();
+</script>
 </body>
 </html>
